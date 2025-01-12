@@ -98,12 +98,18 @@ def calculate_follow_position(sender_x, sender_y, yaw, distance=1.0):
 
 # Program utama
 def main():
-    angle_kp = 2.0
-    max_speed = 8.0
-    follow_distance = 1.5  # Jarak yang ingin dijaga di belakang pengirim
-    min_distance_to_stop = 0.3  # Jarak minimum ke target sebelum berhenti
-
-    target_x, target_y = None, None
+    base_speed = 5.0  # Kecepatan dasar dikurangi untuk stabilitas
+    follow_speed = 3.0  # Kecepatan saat mengikuti tepi rintangan
+    obstacle_threshold = 0.9  # Jarak minimal untuk menghindari rintangan (meter)
+    follow_mode = False  # Status mengikuti tepi rintangan
+    follow_side = None  # Menentukan arah mengikuti (kiri atau kanan)
+    follow_counter = 0  # Hitungan untuk keluar dari mode mengikuti jika terlalu lama
+    angle_kp = 1.7
+    max_follow_steps = 60  # Maksimum langkah mengikuti rintangan sebelum reset
+    target_x, target_y = None, None  # Inisialisasi default target
+    max_velocity = 10.0
+    min_distance_to_stop = 0.3
+    follow_distance = 1.5
 
     global chosen_direction # variabel global untuk menyimpan arah putar
 
@@ -145,16 +151,63 @@ def main():
         angle_error = (angle_error + math.pi) % (2 * math.pi) - math.pi
 
         if distance_to_target < min_distance_to_stop:
+            set_motor_velocity(0.0, 0.0)
+            print("[Receiver] Sampai di target.")
             continue
 
-        correction = angle_kp * angle_error
-        left_speed = 6.0 - correction
-        right_speed = 6.0 + correction
+        # **Mode Move-to-Goal:** Jalur ke target bebas rintangan
+        if depan_value > obstacle_threshold and not follow_mode:
+            print("[Receiver] Jalur bersih, menuju target...")
+            correction = angle_kp * angle_error  # Perhalus koreksi sudut
+            left_speed = base_speed - correction
+            right_speed = base_speed + correction
+            left_speed = max(min(left_speed, max_velocity), -max_velocity)
+            right_speed = max(min(right_speed, max_velocity), -max_velocity)
+            set_motor_velocity(left_speed, right_speed)
+            follow_mode = False  # Reset follow mode
+            follow_side = None  # Reset arah mengikuti
+            follow_counter = 0  # Reset hitungan langkah mengikuti
+            
+        else:
+            if not follow_mode:
+                print("[Receiver] Rintangan di depan, mencari tepi rintangan...")
+                # Tentukan arah mengikuti tepi berdasarkan sensor kiri dan kanan
+                if kiri_value > kanan_value:
+                    follow_side = "left"
+                else:
+                    follow_side = "right"
+                follow_mode = True
 
-        left_speed = max(min(left_speed, max_speed), -max_speed)
-        right_speed = max(min(right_speed, max_speed), -max_speed)
+            # **Mode Follow-Obstacle:** Mengikuti tepi rintangan
+            follow_counter += 1
+            if follow_side == "left":
+                if kiri_value < obstacle_threshold:
+                    # Tetap mengikuti tepi kiri
+                    set_motor_velocity(follow_speed, follow_speed * 0.5)
+                else:
+                    # Belok sedikit ke kiri jika terlalu jauh dari tepi
+                    set_motor_velocity(-follow_speed * 0.3, follow_speed)
+            elif follow_side == "right":
+                if kanan_value < obstacle_threshold:
+                    # Tetap mengikuti tepi kanan
+                    set_motor_velocity(follow_speed * 0.5, follow_speed)
+                else:
+                    # Belok sedikit ke kanan jika terlalu jauh dari tepi
+                    set_motor_velocity(follow_speed, -follow_speed * 0.3)
 
-        set_motor_velocity(left_speed, right_speed)
+            # Jika terlalu lama mengikuti tepi, robot keluar dari mode mengikuti
+            if follow_counter > max_follow_steps:
+                print("[Receiver] Terlalu lama mengikuti rintangan, reset ke move-to-goal.")
+                follow_mode = False
+                follow_side = None
+                follow_counter = 0
+
+            # Periksa jika jalur ke target sudah bebas rintangan
+            if depan_value > obstacle_threshold and abs(angle_error) < 0.2:
+                print("[Receiver] Jalur kembali ke target ditemukan.")
+                follow_mode = False  # Kembali ke mode Move-to-Goal
+                follow_side = None  # Reset arah mengikuti
+                follow_counter = 0
         
         for obj in recognized_objects:
             color_array = obj.getColors()
@@ -179,7 +232,7 @@ def main():
                     set_motor_velocity(0.0, 0.0)  # Berhenti
                     if object_position_y <= camera_height * 0.25:
                         print("inih")
-                        set_motor_velocity(-6.0, -6.0)
+                        set_motor_velocity(-7.0, -7.0)
                 elif top_bound <= object_position_y <= middle_bound:
                     print("Objek di tengah vertikal")
                     set_motor_velocity(6.0, 6.0)  # Maju lurus

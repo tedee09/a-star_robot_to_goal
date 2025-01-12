@@ -3,12 +3,13 @@
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Wall.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
-  position -7.2883742700713824e-06 -7.288394879766751e-06 6.933718876959053
+  orientation -0.2204636469130151 0.10406698482028365 0.9698277388589317 2.2829716586809585
+  position 3.640487763793175 -4.707501440138039 2.9313551280758907
 }
 TexturedBackground {
 }
@@ -16,6 +17,14 @@ TexturedBackgroundLight {
 }
 RectangleArena {
   floorSize 5 3
+}
+Wall {
+  size 0.02 2 0.2
+}
+Wall {
+  translation 0.87 0 0
+  name "wall(1)"
+  size 1.7 0.02 0.2
 }
 DEF robot1 Robot {
   translation -0.930003 0.62997 0.09
@@ -659,5 +668,5 @@ DEF robot2 Robot {
   boundingObject USE body
   physics Physics {
   }
-  controller "chasing_robot"
+  controller "follower_with_tangent_bug_algorithm"
 }
