@@ -100,11 +100,11 @@ def calculate_follow_position(sender_x, sender_y, yaw, distance=1.0):
 def main():
     base_speed = 5.0  # Kecepatan dasar dikurangi untuk stabilitas
     follow_speed = 3.0  # Kecepatan saat mengikuti tepi rintangan
-    obstacle_threshold = 0.9  # Jarak minimal untuk menghindari rintangan (meter)
+    obstacle_threshold = 0.4  # Jarak minimal untuk menghindari rintangan (meter)
     follow_mode = False  # Status mengikuti tepi rintangan
     follow_side = None  # Menentukan arah mengikuti (kiri atau kanan)
     follow_counter = 0  # Hitungan untuk keluar dari mode mengikuti jika terlalu lama
-    angle_kp = 1.7
+    angle_kp = 1.8
     max_follow_steps = 60  # Maksimum langkah mengikuti rintangan sebelum reset
     target_x, target_y = None, None  # Inisialisasi default target
     max_velocity = 10.0
