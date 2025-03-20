@@ -192,13 +192,13 @@ def main():
                 
                 if depan_value < 1000:
                     print("ini wak")
-                    set_motor_velocity(-2.0, -2.0)
+                    set_motor_velocity(-4.0, -4.0)
             elif object_position_x > right_bound:
                 print("Objek di kanan, coba nganan")
                 set_motor_velocity(4.0, -3.0)
                 
                 if depan_value < 1000:
-                    set_motor_velocity(-2.0, -2.0)
+                    set_motor_velocity(-4.0, -4.0)
             else:
                 pass          
                             
@@ -207,13 +207,13 @@ def main():
                 chosen_direction  = random.choice(["left", "right"])
             
             if chosen_direction  == "left":
-                set_motor_velocity(-2.0, 2.0)  # Berputar
+                set_motor_velocity(-6.0, 6.0)  # Berputar
             else:
-                set_motor_velocity(2.0, -2.0)  # Berputar
+                set_motor_velocity(6.0, -6.0)  # Berputar
         elif kiri_value < 1000:  # Jika ada rintangan di kiri
-            set_motor_velocity(2.0, 0.5)  # Belok kanan
+            set_motor_velocity(6.0, 4.5)  # Belok kanan
         elif kanan_value < 1000:  # Jika ada rintangan di kanan
-            set_motor_velocity(0.5, 2.0)  # Belok kiri
+            set_motor_velocity(4.5, 6.0)  # Belok kiri
         
 if __name__ == "__main__":
     main()
