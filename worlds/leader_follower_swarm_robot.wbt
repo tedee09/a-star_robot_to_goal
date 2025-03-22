@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
-  position 9.973616601879006e-05 -2.6027645473605465e-06 10.000414492746463
+  orientation -0.15729286085825522 -0.13005358970954728 0.978950979225562 4.132853592763744
+  position -0.4424526166661453 1.245754077495991 0.34925010002597817
 }
 TexturedBackground {
 }
@@ -22,7 +22,7 @@ DEF robot1 Robot {
   rotation 0 0 1 5.307156870259904e-06
   children [
     DEF leader_mark Solid {
-      translation 0 0 0.054
+      translation 0 0 0.049
       children [
         Shape {
           appearance PBRAppearance {
@@ -170,7 +170,7 @@ DEF robot1 Robot {
     DEF motor_kanan_belakang HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor -0.048 -0.0403 -0.0308
+        anchor -0.0457 -0.0421 -0.02683
       }
       device [
         RotationalMotor {
@@ -181,21 +181,21 @@ DEF robot1 Robot {
         }
       ]
       endPoint Solid {
-        translation -0.048 -0.0403 -0.0308
-        rotation 0.9999999999999991 2.9998020149382706e-08 -2.9998129901785296e-08 1.5707999999999995
+        translation -0.045699999999999984 -0.0421 -0.026829999999999993
+        rotation 0.9999999999999992 2.9694744783722082e-08 -3.030140533666802e-08 1.570799997023469
         children [
           DEF roda Shape {
             appearance PBRAppearance {
               transparency 1
             }
             geometry Cylinder {
-              height 0.018
-              radius 0.023
+              height 0.016
+              radius 0.02
             }
           }
           CadShape {
             url [
-              "../../../../../../../../Downloads/swarm_obj_webots/roda_kanan_belakang.obj"
+              "../../../../../../../../Downloads/simulation design/new design/tes1.obj"
             ]
           }
         ]
@@ -208,7 +208,7 @@ DEF robot1 Robot {
     DEF motor_kiri_belakang HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor -0.048 0.04 -0.0308
+        anchor -0.0457 0.04255 -0.02683
       }
       device [
         RotationalMotor {
@@ -219,21 +219,21 @@ DEF robot1 Robot {
         }
       ]
       endPoint Solid {
-        translation -0.048 0.04 -0.0308
-        rotation -0.9999999999999997 1.8091954038055853e-08 1.8091935748235262e-08 1.5707953071795313
+        translation -0.045700000000000005 0.04255 -0.02683
+        rotation 0.9999999999999998 -1.9788314143652575e-08 -1.6395574669364524e-08 4.712390000644207
         children [
           DEF roda Shape {
             appearance PBRAppearance {
               transparency 1
             }
             geometry Cylinder {
-              height 0.018
-              radius 0.023
+              height 0.016
+              radius 0.02
             }
           }
           CadShape {
             url [
-              "../../../../../../../../Downloads/swarm_obj_webots/roda_kiri_belakang.obj"
+              "../../../../../../../../Downloads/simulation design/new design/kiri_belakang.obj"
             ]
           }
         ]
@@ -246,7 +246,7 @@ DEF robot1 Robot {
     DEF motor_kiri_depan HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.0251 0.04 -0.0308
+        anchor 0.02774 0.04255 -0.02683
       }
       device [
         RotationalMotor {
@@ -257,21 +257,21 @@ DEF robot1 Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0251 0.04 -0.0308
-        rotation -0.9999999999999999 -6.951793127280767e-09 -6.951785568101642e-09 1.5707953071794778
+        translation 0.027739999999999994 0.04255 -0.02683000000000001
+        rotation 1 5.232982509546716e-09 8.670594778428961e-09 4.712390000796518
         children [
           DEF roda Shape {
             appearance PBRAppearance {
               transparency 1
             }
             geometry Cylinder {
-              height 0.018
-              radius 0.023
+              height 0.016
+              radius 0.02
             }
           }
           CadShape {
             url [
-              "../../../../../../../../Downloads/swarm_obj_webots/roda_kiri_depan.obj"
+              "../../../../../../../../Downloads/simulation design/new design/kiri_depan.obj"
             ]
           }
         ]
@@ -284,7 +284,7 @@ DEF robot1 Robot {
     DEF motor_kanan_depan HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.0251 -0.0403 -0.0308
+        anchor 0.02774 -0.0421 -0.02683
       }
       device [
         RotationalMotor {
@@ -295,21 +295,21 @@ DEF robot1 Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0251 -0.0403 -0.0308
-        rotation 1 7.498721987998657e-10 -7.498672435474037e-10 1.5707899999999542
+        translation 0.027739999999999997 -0.0421 -0.026830000000000003
+        rotation 1 3.883813409268065e-10 -1.1113612774413419e-09 1.5707899968067291
         children [
           DEF roda Shape {
             appearance PBRAppearance {
               transparency 1
             }
             geometry Cylinder {
-              height 0.018
-              radius 0.023
+              height 0.016
+              radius 0.02
             }
           }
           CadShape {
             url [
-              "../../../../../../../../Downloads/swarm_obj_webots/roda_kanan_depan.obj"
+              "../../../../../../../../Downloads/simulation design/new design/kanan_depan.obj"
             ]
           }
         ]
@@ -324,7 +324,7 @@ DEF robot1 Robot {
       children [
         CadShape {
           url [
-            "../../../../../../../../Downloads/swarm_obj_webots/body.obj"
+            "../../../../../../../../Downloads/simulation design/new design/body.obj"
           ]
         }
       ]
@@ -336,7 +336,7 @@ DEF robot1 Robot {
             transparency 1
           }
           geometry Box {
-            size 0.125 0.058 0.077
+            size 0.125 0.065 0.076
           }
         }
       ]
