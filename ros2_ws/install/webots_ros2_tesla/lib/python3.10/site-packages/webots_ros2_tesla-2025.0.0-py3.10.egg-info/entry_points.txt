@@ -1,0 +1,6 @@
+[console_scripts]
+lane_follower = webots_ros2_tesla.lane_follower:main
+
+[launch.frontend.launch_extension]
+launch_ros = launch_ros
+

@@ -1,0 +1,10 @@
+vision_node:
+  executable: vision_node
+  ros__args: --webots-robot-name=camera
+
+path_planner:
+  executable: path_planner_node
+
+robot_controller:
+  executable: robot_controller_node
+  ros__args: --webots-robot-name=robot1

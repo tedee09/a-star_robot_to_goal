@@ -1,0 +1,236 @@
+SIMULASI PATH PLANNING DENGAN WEBOTS ROS2
+
+*STRUKTUR PROJEK PATH PLANNING (STRUKTUR UNTUK SAAT INI)
+/home/tedee/path
+├── controllers
+│   ├── camera_controller
+│   │   └── camera_controller.py
+│   ├── follower
+│   │   └── follower.py
+│   ├── follower_with_tangent_bug_algorithm
+│   │   └── follower_with_tangent_bug_algorithm.py
+│   ├── leader
+│   │   └── leader.py
+│   ├── maze_generator
+│   │   └── maze_generator.py
+│   ├── overhead_camera
+│   │   └── overhead_camera.py
+│   ├── random_spawn
+│   │   └── random_spawn.py
+│   ├── robot1
+│   │   └── robot1.py
+│   └── ros2_teleop_controller
+│       └── ros2_teleop_controller.py
+├── model
+│   ├── maze
+│   │   ├── maze.blend
+│   │   ├── maze.blend1
+│   │   ├── simple_maze.blend
+│   │   ├── tes1.mtl
+│   │   ├── tes1.obj
+│   │   ├── tes2.mtl
+│   │   ├── tes2.obj
+│   │   ├── tes3.mtl
+│   │   ├── tes3.obj
+│   │   ├── tes4.mtl
+│   │   └── tes4.obj
+│   ├── new design
+│   │   ├── body.mtl
+│   │   ├── body.obj
+│   │   ├── kanan_belakang.mtl
+│   │   ├── kanan_belakang.obj
+│   │   ├── kanan_depan.mtl
+│   │   ├── kanan_depan.obj
+│   │   ├── kiri_belakang.mtl
+│   │   ├── kiri_belakang.obj
+│   │   ├── kiri_depan.mtl
+│   │   └── kiri_depan.obj
+│   ├── old design
+│   │   ├── body.mtl
+│   │   ├── body.obj
+│   │   ├── roda_kanan_belakang.mtl
+│   │   ├── roda_kanan_belakang.obj
+│   │   ├── roda_kanan_depan.mtl
+│   │   ├── roda_kanan_depan.obj
+│   │   ├── roda_kiri_belakang.mtl
+│   │   ├── roda_kiri_belakang.obj
+│   │   ├── roda_kiri_depan.mtl
+│   │   └── roda_kiri_depan.obj
+│   └── raw design
+│       ├── adjust.blend
+│       ├── adjust.blend1
+│       ├── body.mtl
+│       ├── body.obj
+│       ├── wheel.mtl
+│       └── wheel.obj
+├── ros2_ws
+│   ├── build
+│   │   ├── aruco
+│   │   ├── COLCON_IGNORE
+│   │   ├── path_planner
+│   │   ├── vision_node
+│   │   ├── webots_ros2
+│   │   ├── webots_ros2_control
+│   │   ├── webots_ros2_crazyflie
+│   │   ├── webots_ros2_driver
+│   │   ├── webots_ros2_epuck
+│   │   ├── webots_ros2_husarion
+│   │   ├── webots_ros2_importer
+│   │   ├── webots_ros2_mavic
+│   │   ├── webots_ros2_msgs
+│   │   ├── webots_ros2_tesla
+│   │   ├── webots_ros2_tests
+│   │   ├── webots_ros2_tiago
+│   │   ├── webots_ros2_turtlebot
+│   │   └── webots_ros2_universal_robot
+│   ├── install
+│   │   ├── aruco
+│   │   ├── COLCON_IGNORE
+│   │   ├── local_setup.bash
+│   │   ├── local_setup.ps1
+│   │   ├── local_setup.sh
+│   │   ├── _local_setup_util_ps1.py
+│   │   ├── _local_setup_util_sh.py
+│   │   ├── local_setup.zsh
+│   │   ├── path_planner
+│   │   ├── setup.bash
+│   │   ├── setup.ps1
+│   │   ├── setup.sh
+│   │   ├── setup.zsh
+│   │   ├── vision_node
+│   │   ├── webots_ros2
+│   │   ├── webots_ros2_control
+│   │   ├── webots_ros2_crazyflie
+│   │   ├── webots_ros2_driver
+│   │   ├── webots_ros2_epuck
+│   │   ├── webots_ros2_husarion
+│   │   ├── webots_ros2_importer
+│   │   ├── webots_ros2_mavic
+│   │   ├── webots_ros2_msgs
+│   │   ├── webots_ros2_tesla
+│   │   ├── webots_ros2_tests
+│   │   ├── webots_ros2_tiago
+│   │   ├── webots_ros2_turtlebot
+│   │   └── webots_ros2_universal_robot
+│   ├── log
+│   │   ├── build_2025-04-07_22-05-59
+│   │   ├── build_2025-04-07_22-09-45
+│   │   ├── build_2025-04-10_18-11-31
+│   │   ├── build_2025-04-10_18-12-24
+│   │   ├── build_2025-04-13_11-02-23
+│   │   ├── build_2025-04-13_11-19-05
+│   │   ├── build_2025-04-13_11-27-07
+│   │   ├── build_2025-04-13_12-00-11
+│   │   ├── build_2025-04-13_12-09-13
+│   │   ├── build_2025-04-13_12-13-05
+│   │   ├── build_2025-04-13_12-27-24
+│   │   ├── build_2025-04-13_12-32-54
+│   │   ├── build_2025-04-13_12-35-58
+│   │   ├── build_2025-04-13_13-20-53
+│   │   ├── build_2025-04-13_13-34-10
+│   │   ├── build_2025-04-13_17-00-02
+│   │   ├── COLCON_IGNORE
+│   │   ├── latest -> latest_build
+│   │   └── latest_build -> build_2025-04-13_17-00-02
+│   └── src
+│       ├── aruco
+│       ├── path_planner
+│       ├── vision_node
+│       └── webots_ros2
+├── urdf
+│   └── Robot1.urdf
+└── worlds
+    └── path.wbt
+
+
+#JIKA BELUM PUNYA WORKSPACE UNTUK ROS2 MAKA BISA IKUTI STEP BERIKUT:
+mkdir -p ~/path/ros2_ws/src
+cd ~/path/ros2_ws
+colcon build
+source install/setup.bash
+
+#BILA TERJADI ERROR SEPERTI BERIKUT SAAT DI BUILD
+```
+WARNING: Some selected packages are already built in one or more underlay workspaces:
+'webots_ros2_driver' is in: /home/tedee/ros2_ws/install/webots_ros2_driver, /opt/ros/humble
+```
+
+#MAKA JALANKAN PERINTAH SEPERTI BERIKUT
+```
+colcon build --allow-overriding webots_ros2_driver
+```
+
+#BUAT PACKAGE UNTUK MASING-MASING NODE:
+
+##UNTUK NODE VISION
+```
+ros2 pkg create --build-type ament_python vision_node
+```
+
+##UNTUK NODE PATH PLANNER
+```
+ros2 pkg create path_planner --build-type ament_python --dependencies rclpy geometry_msgs
+```
+
+##UNTUK NODE FOLLOWER PATH
+```
+ros2 pkg create --build-type ament_python path_follower
+```
+
+##UNTUK ODOMETRY NODE
+```
+ros2 pkg create odometry_node --build-type ament_python --dependencies rclpy geometry_msgs std_msgs
+```
+
+#JIKA SUDAH PUNYA MAKA JALANKAN PERINTAH PADA MASING-MASING TAB DI TERMINAL SEPERTI BERIKUT:
+
+##TAB 1 (JALANKAN SIMULASI WEBOTS)
+cd ~/path
+source ros2_ws/install/setup.bash
+webots worlds/path.wbt
+
+##TAB 2 (JALANKAN NODE PATH FOLLOWER)
+cd ros2_ws
+source install/setup.bash
+ros2 run path_follower path_follower_node
+
+##TAB 3 (JALANKAN NODE PATH PLANNER)
+cd ros2_ws
+source install/setup.bash
+ros2 run path_planner path_planner_node
+
+##TAB 4 (JALANKAN RVIZ)
+cd ros2_ws
+source install/setup.bash
+ros2 run rviz2 rviz2
+
+##TAB 5 (JALANKAN NODE VISION)
+cd ros2_ws
+source install/setup.bash
+ros2 run vision_node vision_node
+
+##TAB 6 (JALANKAN NODE ODOMETRY)
+cd ros2_ws
+source install/setup.bash
+ros2 run odometry_node odometry_node
+
+#UNTUK MENGECEK NODE BERJALAN COBA MASUKKAN PERINTAH:
+ros2 topic list
+ros2 topic echo (sesuai list dari topic)
+
+#ILUSTRASI DATA FLOW
+```
+[vision_node.py]
+      ⬇️ (posisi robot & goal)
+[path_planner_node.py]
+      ⬇️ (publish /path)
+[path_follower_node.py]
+      ⬇️ (publish /cmd_vel)
+[ros2_cmd_vel_controller.py]
+      ⬇️ (kendalikan motor Webots)
+[robot di simulasi Webots]
+```
+
+#URUTAN MENJALANKAN PROGRAM TERMINAL 
+
+jalankan webots >> vision_node >> path_follower_node >> path_planner_node

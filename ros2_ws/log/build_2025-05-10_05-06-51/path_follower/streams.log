@@ -1,0 +1,28 @@
+[0.772s] Invoking command in '/home/tedee/path/ros2_ws/src/path_follower': PYTHONPATH=/home/tedee/path/ros2_ws/build/path_follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tedee/path/ros2_ws/install/path_follower/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/path_follower build --build-base /home/tedee/path/ros2_ws/build/path_follower/build install --record /home/tedee/path/ros2_ws/build/path_follower/install.log --single-version-externally-managed install_data
+[0.936s] running egg_info
+[0.937s] creating ../../build/path_follower/path_follower.egg-info
+[0.937s] writing ../../build/path_follower/path_follower.egg-info/PKG-INFO
+[0.937s] writing dependency_links to ../../build/path_follower/path_follower.egg-info/dependency_links.txt
+[0.937s] writing entry points to ../../build/path_follower/path_follower.egg-info/entry_points.txt
+[0.937s] writing requirements to ../../build/path_follower/path_follower.egg-info/requires.txt
+[0.937s] writing top-level names to ../../build/path_follower/path_follower.egg-info/top_level.txt
+[0.937s] writing manifest file '../../build/path_follower/path_follower.egg-info/SOURCES.txt'
+[0.938s] reading manifest file '../../build/path_follower/path_follower.egg-info/SOURCES.txt'
+[0.938s] writing manifest file '../../build/path_follower/path_follower.egg-info/SOURCES.txt'
+[0.938s] running build
+[0.938s] running build_py
+[0.938s] creating /home/tedee/path/ros2_ws/build/path_follower/build
+[0.938s] creating /home/tedee/path/ros2_ws/build/path_follower/build/lib
+[0.938s] creating /home/tedee/path/ros2_ws/build/path_follower/build/lib/path_follower
+[0.938s] copying path_follower/__init__.py -> /home/tedee/path/ros2_ws/build/path_follower/build/lib/path_follower
+[0.938s] copying path_follower/path_follower_node.py -> /home/tedee/path/ros2_ws/build/path_follower/build/lib/path_follower
+[0.938s] running install
+[0.939s] running install_lib
+[0.939s] running install_data
+[0.939s] running install_egg_info
+[0.940s] removing '/home/tedee/path/ros2_ws/install/path_follower/lib/python3.10/site-packages/path_follower-0.0.0-py3.10.egg-info' (and everything under it)
+[0.941s] Copying ../../build/path_follower/path_follower.egg-info to /home/tedee/path/ros2_ws/install/path_follower/lib/python3.10/site-packages/path_follower-0.0.0-py3.10.egg-info
+[0.941s] running install_scripts
+[0.954s] Installing path_follower_node script to /home/tedee/path/ros2_ws/install/path_follower/lib/path_follower
+[0.954s] writing list of installed files to '/home/tedee/path/ros2_ws/build/path_follower/install.log'
+[0.975s] Invoked command in '/home/tedee/path/ros2_ws/src/path_follower' returned '0': PYTHONPATH=/home/tedee/path/ros2_ws/build/path_follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/tedee/path/ros2_ws/install/path_follower/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/path_follower build --build-base /home/tedee/path/ros2_ws/build/path_follower/build install --record /home/tedee/path/ros2_ws/build/path_follower/install.log --single-version-externally-managed install_data

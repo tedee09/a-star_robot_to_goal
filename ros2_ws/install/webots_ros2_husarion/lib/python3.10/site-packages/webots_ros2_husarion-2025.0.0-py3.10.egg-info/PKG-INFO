@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: webots-ros2-husarion
+Version: 2025.0.0
+Summary: Husarion ROSbot 2R and XL robots ROS2 interface for Webots.
+Home-page: UNKNOWN
+Author: Jakub Delicat
+Author-email: jakub.delicat@husarion.com
+Maintainer: Husarion
+Maintainer-email: support@husarion.com
+License: Apache License 2.0
+Keywords: ROS,Webots,Robot,Simulation,Examples,ROSbot,ROSbot 2R,ROSbot XL,Husarion
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+
+UNKNOWN
+

@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: webots-ros2-tests
+Version: 2025.0.0
+Summary: System tests for `webots_ros2` packages
+Home-page: UNKNOWN
+Author: Cyberbotics
+Author-email: support@cyberbotics.com
+Maintainer: Cyberbotics
+Maintainer-email: support@cyberbotics.com
+License: Apache License, Version 2.0
+Keywords: ROS,Webots,Robot,Simulation,Examples
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+
+UNKNOWN
+
