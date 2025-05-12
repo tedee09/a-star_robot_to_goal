@@ -1,42 +1,49 @@
-SIMULASI PATH PLANNING DENGAN WEBOTS ROS2
+# SIMULASI PATH PLANNING DENGAN WEBOTS ROS2
 
-#UNUTK MENJALANKAN PERINTAH PADA MASING-MASING TAB DI TERMINAL SEPERTI BERIKUT:
+UNTUK MENJALANKAN PERINTAH PADA MASING-MASING TAB DI TERMINAL SEPERTI BERIKUT:
 
-##TAB 1 (JALANKAN SIMULASI WEBOTS)
+## TAB 1 (JALANKAN SIMULASI WEBOTS)
+```
 cd ~/path
 source ros2_ws/install/setup.bash
 webots worlds/path.wbt
+```
 
-##TAB 2 (JALANKAN NODE PATH FOLLOWER)
+## TAB 2 (JALANKAN NODE PATH FOLLOWER)
+```
 cd ros2_ws
 source install/setup.bash
 ros2 run path_follower path_follower_node
+```
 
-##TAB 3 (JALANKAN NODE PATH PLANNER)
+## TAB 3 (JALANKAN NODE PATH PLANNER)
+```
 cd ros2_ws
 source install/setup.bash
 ros2 run path_planner path_planner_node
+```
 
-##TAB 4 (JALANKAN RVIZ)
+## TAB 4 (JALANKAN RVIZ)
+```
 cd ros2_ws
 source install/setup.bash
 ros2 run rviz2 rviz2
+```
 
-##TAB 5 (JALANKAN NODE VISION)
+## TAB 5 (JALANKAN NODE VISION)
+```
 cd ros2_ws
 source install/setup.bash
 ros2 run vision_node vision_node
+```
 
-##TAB 6 (JALANKAN NODE ODOMETRY)
-cd ros2_ws
-source install/setup.bash
-ros2 run odometry_node odometry_node
-
-#UNTUK MENGECEK NODE BERJALAN COBA MASUKKAN PERINTAH:
+## UNTUK MENGECEK NODE BERJALAN COBA MASUKKAN PERINTAH:
+```
 ros2 topic list
 ros2 topic echo (sesuai list dari topic)
+```
 
-#ILUSTRASI DATA FLOW
+## ILUSTRASI DATA FLOW
 ```
 [vision_node.py]
       ⬇️ (posisi robot & goal)
@@ -49,6 +56,6 @@ ros2 topic echo (sesuai list dari topic)
 [robot di simulasi Webots]
 ```
 
-#URUTAN MENJALANKAN PROGRAM TERMINAL 
+## URUTAN MENJALANKAN PROGRAM TERMINAL 
 
 jalankan webots >> vision_node >> path_follower_node >> path_planner_node
