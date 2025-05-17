@@ -6,50 +6,65 @@ Proyek ini merupakan simulasi pergerakan robot menggunakan algoritma **A\* path 
 
 ## 💻 Menjalankan Simulasi
 
-Buka **6 tab terminal** dan jalankan perintah berikut:
+Buka **5 tab terminal** dan jalankan perintah berikut:
 
 ### 🖥️ TAB 1 – Jalankan Webots
-```bash
-cd ~/path
+```
+cd ~/a-star_robot_to_goal
 source ros2_ws/install/setup.bash
-webots worlds/path.wbt
+webots webots/worlds/swarm.wbt
 ```
 
 ### 🤖 TAB 2 – Jalankan Node Path Follower
-```bash
-cd ros2_ws
+```
+cd ~/a-star_robot_to_goal/ros2_ws
 source install/setup.bash
 ros2 run path_follower path_follower_node
 ```
 
 ### 🧠 TAB 3 – Jalankan Node Path Planner
-```bash
-cd ros2_ws
+```
+cd ~/a-star_robot_to_goal/ros2_ws
 source install/setup.bash
 ros2 run path_planner path_planner_node
 ```
 
 ### 📊 TAB 4 – Jalankan RViz
-```bash
-cd ros2_ws
+```
+cd ~/a-star_robot_to_goal/ros2_ws
 source install/setup.bash
 ros2 run rviz2 rviz2
 ```
 
 ### 📷 TAB 5 – Jalankan Node Vision
-```bash
-cd ros2_ws
+```
+cd ~/a-star_robot_to_goal/ros2_ws
 source install/setup.bash
 ros2 run vision_node vision_node
 ```
 
-### 🧭 TAB 6 – Jalankan Node Odometry
-```bash
-cd ros2_ws
-source install/setup.bash
-ros2 run odometry_node odometry_node
-```
+---
+### 📊 Panduan Setting RViz
 
+🧭 1. Ubah Fixed Frame
+Pada pojok kanan atas RViz, ubah nilai Fixed Frame menjadi:
+```
+map
+```
+➕ 2. Tambahkan Display
+
+Klik tombol Add di panel kiri, lalu tambahkan dan atur display berikut:
+📌 Path
+
+    Type: Path
+
+    Topic: /path
+
+    Style: Lines
+
+    Line Width: 0.03
+
+    Color: Biru
 ---
 
 ## 🔍 Mengecek Node Berjalan
