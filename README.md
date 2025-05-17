@@ -95,6 +95,6 @@ ros2 topic echo /<nama_topic>
 
 ## 🚀 Urutan Eksekusi
 1. Jalankan **Webots**
-2. Jalankan **vision_node**
-3. Jalankan **path_follower_node**
-4. Jalankan **path_planner_node**
+2. Jalankan **path_follower_node**
+3. Jalankan **path_planner_node**
+4. Jalankan **vision_node**
