@@ -21,6 +21,10 @@ class PathFollowerNode(Node):
         # Subscriber ke posisi robot
         self.robot_sub = self.create_subscription(Point, 'robot_position', self.robot_callback, 10)
 
+        # Subscriber ke posisi goal
+        self.goal_position = None
+        self.goal_sub = self.create_subscription(Point, 'goal_position', self.goal_callback, 10)
+
         # Subscriber ke heading dari IMU
         self.heading_sub = self.create_subscription(Float32, 'robot_heading', self.heading_callback, 10)
 
@@ -44,6 +48,9 @@ class PathFollowerNode(Node):
 
     def robot_callback(self, msg):
         self.current_robot_pos = (msg.x, msg.y)
+    
+    def goal_callback(self, msg):
+        self.goal_position = (msg.x, msg.y)
 
     def heading_callback(self, msg):
         self.current_heading = msg.data
@@ -65,9 +72,37 @@ class PathFollowerNode(Node):
 
         # Jika sudah mencapai seluruh waypoint, hentikan
         if self.target_index >= len(self.path_points):
-            self.get_logger().info("All waypoints reached. Robot stopped.")
+            rx, ry = self.current_robot_pos
+
+            if self.goal_position:
+                gx, gy = self.goal_position
+                distance = sqrt((gx - rx)**2 + (gy - ry)**2)
+
+                if distance > 0.05:
+                    dx = gx - rx
+                    dy = gy - ry
+                    desired_angle = atan2(dy, dx)
+                    error_angle = self.shortest_angular_distance(self.current_heading, desired_angle)
+
+                    twist = Twist()
+                    if abs(error_angle) > 0.2:
+                        twist.angular.z = 0.8 * error_angle
+                        twist.linear.x = 0.0
+                    else:
+                        twist.angular.z = 0.5 * error_angle
+                        twist.linear.x = 0.2
+
+                    self.cmd_pub.publish(twist)
+                    self.get_logger().warn(f"🚧 Koreksi akhir ke goal: jarak sisa {distance:.3f} m")
+                    return
+                else:
+                    self.get_logger().info("✅ Goal benar-benar tercapai.")
+            else:
+                self.get_logger().warn("Goal position tidak tersedia.")
+
             self.cmd_pub.publish(Twist())
             return
+
 
         if not isinstance(self.current_heading, float) or math.isnan(self.current_heading):
             self.get_logger().warn("Heading tidak valid!")
@@ -89,7 +124,7 @@ class PathFollowerNode(Node):
             return
 
         # Jika jarak cukup dekat, anggap waypoint tercapai
-        if distance < 0.10 or (abs(error_angle) < 0.2 and distance < 0.25):
+        if distance < 0.05 or (abs(error_angle) < 0.2 and distance < 0.15):
             self.get_logger().info(f"Waypoint {self.target_index + 1}/{len(self.path_points)} reached: ({tx:.2f}, {ty:.2f})")
             self.target_index += 1
             self.cmd_pub.publish(Twist())  # stop sejenak

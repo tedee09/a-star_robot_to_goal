@@ -6,9 +6,6 @@
         "limitSymbolsToIncludedHeaders": false
       },
       "includePath": [
-        "/home/tedee/path/ros2_ws/install/webots_ros2_control/include/**",
-        "/home/tedee/path/ros2_ws/install/webots_ros2_driver/include/**",
-        "/home/tedee/path/ros2_ws/install/webots_ros2_msgs/include/**",
         "/home/tedee/ros2_ws/install/webots_ros2_control/include/**",
         "/home/tedee/ros2_ws/install/webots_ros2_driver/include/**",
         "/home/tedee/ros2_ws/install/webots_ros2_msgs/include/**",

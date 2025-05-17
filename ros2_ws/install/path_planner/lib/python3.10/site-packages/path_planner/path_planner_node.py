@@ -3,7 +3,6 @@ from rclpy.node import Node
 from geometry_msgs.msg import Point, PoseStamped
 from nav_msgs.msg import Path
 import heapq
-from builtin_interfaces.msg import Time
 import time
 import math
 from tf_transformations import quaternion_from_euler
@@ -116,6 +115,9 @@ class PathPlannerNode(Node):
         path_points = a_star(self.grid, self.robot_pos, self.goal_pos)
             
         if path_points:
+            if path_points[-1] != self.goal_pos:
+                path_points.append(self.goal_pos)
+                self.get_logger().info("Titik goal asli ditambahkan sebagai waypoint terakhir.")
             path_msg = Path()
             path_msg.header.frame_id = "map"
 
@@ -166,8 +168,10 @@ def a_star(grid, start, goal):
     came_from = {}
     g_score = {start: 0}
 
+    # def h(p1, p2):
+    #     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])  # heuristic: Manhattan distance
     def h(p1, p2):
-        return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])  # heuristic: Manhattan distance
+        return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2) # heuristic: Euclidean distance
 
     while open_set:
         _, current = heapq.heappop(open_set)
@@ -178,12 +182,18 @@ def a_star(grid, start, goal):
                 current = came_from.get(current)
             return path[::-1]
 
-        for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
+        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1),  # atas, bawah, kiri, kanan
+                  (-1, -1), (-1, 1), (1, -1), (1, 1)]: # diagonal
             neighbor = (current[0]+dx, current[1]+dy)
+            
             if 0 <= neighbor[0] < rows and 0 <= neighbor[1] < cols:
                 if grid[neighbor[0]][neighbor[1]] == 1:
                     continue
-                tentative_g = g_score[current] + 1
+                
+                # Biaya langkah diagonal = 1.414, lurus = 1.0
+                step_cost = 1.414 if dx != 0 and dy != 0 else 1.0
+                
+                tentative_g = g_score[current] + step_cost
                 if tentative_g < g_score.get(neighbor, float('inf')):
                     came_from[neighbor] = current
                     g_score[neighbor] = tentative_g
